@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import View from './View'
 import axios from 'axios'
-import Update from './UpdateArtistForm'
-import Add from './AddArtistForm'
+import Update from './UpdateArtist'
+import Add from './AddArtist'
+import Artist from './Artist'
 import './assets/css/style.css'
 
 var urlPrefix = 'http://localhost:4000/api'
@@ -17,15 +18,15 @@ class App extends Component {
           id: 1,
           name: "Red Hot Chilli Peppers",
           description: " Red Hot Chili Peppers are an American rock band formed in Los Angeles in 1983. Their music incorporates elements of alternative rock, funk, punk rock and psychedelic rock. With over 80 million records sold worldwide, ",
-          photo: "./images/red-hot-chilli-peppers-1.jpg",
-          type_id: 1
+          photo: "/images/rhcp-1.jpg",
+          type_id: 'Rock'
         },
         {
           id: 2,
           name: "The Strokes",
           description: " The Strokes are an American rock band from Manhattan, New York. Formed in 1998, the band is often credited with having spearheaded a revival of 1960s-style garage rock in the early 21st century. ",
-          photo: "./images/the-strokes-1.jpg",
-          type_id: 1
+          photo: "/images/the-strokes-1.jpg",
+          type_id: 'Rock'
         }
       ]
     }
@@ -35,15 +36,29 @@ class App extends Component {
     this.setState({ activeView: view })
   }
 
-  getProjects = () => {
+  getArtists = () => {
     axios.get(urlPrefix + '/artists')
       .then(res => {
         this.setState({ artists: res.data })
       })
   }
 
+  deleteArtist = (id) => {
+    axios.delete(urlPrefix + '/artists/' + id)
+      .then(res => {
+        this.getArtists()
+      })
+  }
+
+  updateArtist = (id, data) => {
+    axios.delete(urlPrefix + '/artists/ ' + id, data)
+      .then(res => {
+        this.getArtists()
+      })
+  }
+
   componentDidMount() {
-    this.getProjects()
+    this.getArtists()
   }
 
   render() {
@@ -57,24 +72,18 @@ class App extends Component {
             </div>
             <i onClick={() => this.setActiveView('addArtist')} className="fas fa-plus-circle"></i>
           </header>
-
           <main>
-            <div className="artist">
-              <img src="assets/chillies.jpg" alt="The Artist" />
-              <h1>Red Hot Chilli Pepers</h1>
-              <hr />
-              <p>Red Hot Chili Peppers are an American rock band formed in Los Angeles in 1983. Their music
-              incorporates elements of alternative rock, funk, punk rock and psychedelic rock. With over 80
-              million records sold worldwide, Red Hot Chili Peppers are one of the best-selling bands of all time.
-            They are the most successful band in the history of alternative rock.</p>
-              <footer>
-                <div className="icons">
-                  <i onClick={() => this.setActiveView('updateArtist')} className="fas fa-edit"></i>
-                  <i className="far fa-trash-alt"></i>
-                </div>
-                <button className="genre">Rock</button>
-              </footer>
-            </div>
+            {
+              this.state.artists.map((artist) => {
+                var props = {
+                  ...artist,
+                  key: artist.id,
+                  setActiveView: this.setActiveView,
+                  deleteArtist: this.deleteArtist,
+                }
+                return (<Artist {...props} />)
+              })
+            }
           </main>
         </View>
 
