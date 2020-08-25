@@ -77,11 +77,10 @@ class App extends Component {
               this.state.artists.map((artist) => {
                 var props = {
                   ...artist,
-                  key: artist.id,
                   setActiveView: this.setActiveView,
                   deleteArtist: this.deleteArtist,
                 }
-                return (<Artist {...props} />)
+                return (<Artist {...props} key={artist.id} />)
               })
             }
           </main>
@@ -95,10 +94,7 @@ class App extends Component {
               </div>
               <i onClick={() => this.setActiveView('artists')} className="fas fa-times-circle"></i>
             </header>
-            <main>
-              <h1>Add Artist</h1>
-
-            </main>
+              <Add />
           </div>
         </View>
 
@@ -110,10 +106,7 @@ class App extends Component {
               </div>
               <i onClick={() => this.setActiveView('artists')} className="fas fa-times-circle"></i>
             </header>
-            <main>
-              <h1>Update Artist</h1>
-
-            </main>
+            <Update />
           </div>
         </View>
       </div>

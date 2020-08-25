@@ -8,7 +8,8 @@ class Artist extends Component {
   }
 
   handleTrashClick = () => {
-    var {deleteArtist,id} = this.props;
+    var {deleteArtist,id} = this.props
+    console.log('click')
     deleteArtist(id);
 }
 
@@ -22,8 +23,8 @@ class Artist extends Component {
         <p>{description}</p>
         <footer>
           <div className="icons">
-            <i onClick={() => this.handleUpdateClick('updateArtist')} className="fas fa-edit"></i>
-            <i onClick={() => this.handleTrashClick} className="far fa-trash-alt"></i>
+            <i onClick={this.handleUpdateClick} className="fas fa-edit"></i>
+            <i onClick={this.handleTrashClick} className="far fa-trash-alt"></i>
           </div>
           <button className="genre">{type_id}</button>
         </footer>
