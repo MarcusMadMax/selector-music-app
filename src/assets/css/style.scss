@@ -1,39 +1,201 @@
-.App {
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+$color1: #211D2E;
+$color2: #2D283E;
+$color3: #564F70;
+$color4: #86809C;
+$color5: #812BB2;
+$color6: #B9012D;
+$color7: #443841;
+$color8: #DF791B;
+$color9: #3D8374;
+$color10: #033767;
+$color11: #FFF;
+
+@mixin icons {
+    position: absolute;
+    font-size: 2em;
+    top: 1em;
+    right: 0;
+    color: $color4;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style-type: none;
+}
+
+header{
+    position: relative;
     text-align: center;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
+    margin: 0 auto;
+    padding: 1em;
+    box-sizing: border-box;
+    width: 80vw;
+
+    .logo{
+        margin-top: 1em;
+        img{
+            width: 10em;
+        }
+    }
+
+    .fa-plus-circle, .fa-times-circle{
+        @include icons;
     }
   }
-  
-  .App-header {
-    background-color: #282c34;
+
+  .App{
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    background-color: $color2;
+    margin: 0 auto;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
+
+    main{
+        position: relative;
+        border: 1px solid $color3;
+        margin: .5em auto;
+        // padding: 1em;
+        border-radius: 10px;
+        width: 90vw;
+        height: 84vh;
+        overflow: auto;
     }
   }
-  
+
+.mainPage{
+
+  main{
+
+    .artist{
+      position: relative;
+      background-color: $color1;
+      padding: 1em;
+      margin: 1em;
+      border-radius: 10px;
+
+        img{
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        h1, p{
+            color: $color11; 
+        }
+
+        h1{
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 1.25em;
+            margin-top: .25em;
+        }
+
+        hr{
+            width: 80%;
+            text-align: left;
+            height: .1px;
+            background-color: $color4;
+            margin: 1em 0;
+        }
+
+        p{
+            font-weight: 300;
+            font-size: .7em;
+        }
+
+        footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 1em;
+            width: 100%;
+
+            .fa-edit, .fa-trash-alt{
+                color: $color1;
+                background-color: $color4; 
+                padding: .5em;
+                border-radius: 50%;
+            }
+
+            .fa-trash-alt{
+                margin-left: 1em;
+            }
+
+            .genre{
+                display: block;
+                text-transform: uppercase;
+                background-color: $color6;
+                color: $color11;
+                border-radius: 6px;
+                padding: .5em 2em;
+            }
+
+            .acidjazz{
+                background-color: $color8;
+            }
+
+            .heavymetall{
+                background-color: $color7;
+            }
+        }
+    }
+  }
+}
+
+.addArtist, .updateArtist{
+
+    main{
+        
+        h1{
+            color: $color11;
+            text-align: center;
+            border-bottom: 1px solid $color3;
+            padding: .5em 0;
+            text-transform: uppercase;
+            width: 100%;
+            letter-spacing: .15em;
+        }
+
+        form{
+           width: 90%;
+           margin: 1em auto;
+           
+           label{
+               display: inline-block;
+               color: $color11;
+               margin: 1em 0 .5em 0;
+               text-transform: uppercase;
+           }
+
+           input, select{
+               background-color: $color11;
+               color: $color4;
+               width: 100%;
+               padding: 1em;
+               box-sizing: border-box;
+               border-radius: 5px;
+            }
+
+            :focus{
+                outline: none;
+            }
+
+
+
+           button{
+               font-size: 1em;
+               color: $color1;
+               background-color: $color4;
+               font-weight: 700;
+               padding: .5em;
+               border-radius: 5px;
+               margin-top: 1em;
+               text-transform: uppercase;
+           }
+        }
+    }
+}

@@ -1,62 +1,179 @@
-.App {
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style-type: none;
+}
+
+header {
+  position: relative;
   text-align: center;
+  margin: 0 auto;
+  padding: 1em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 80vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header .logo {
+  margin-top: 1em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    -webkit-animation: App-logo-spin infinite 20s linear;
-            animation: App-logo-spin infinite 20s linear;
-  }
+header .logo img {
+  width: 10em;
 }
 
-.App-header {
-  background-color: #282c34;
+header .fa-plus-circle, header .fa-times-circle {
+  position: absolute;
+  font-size: 2em;
+  top: 1em;
+  right: 0;
+  color: #86809C;
+}
+
+.App {
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  background-color: #2D283E;
+  margin: 0 auto;
   min-height: 100vh;
+}
+
+.App main {
+  position: relative;
+  border: 1px solid #564F70;
+  margin: .5em auto;
+  border-radius: 10px;
+  width: 90vw;
+  height: 84vh;
+  overflow: auto;
+}
+
+.mainPage main .artist {
+  position: relative;
+  background-color: #211D2E;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 10px;
+}
+
+.mainPage main .artist img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.mainPage main .artist h1, .mainPage main .artist p {
+  color: #FFF;
+}
+
+.mainPage main .artist h1 {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.25em;
+  margin-top: .25em;
+}
+
+.mainPage main .artist hr {
+  width: 80%;
+  text-align: left;
+  height: .1px;
+  background-color: #86809C;
+  margin: 1em 0;
+}
+
+.mainPage main .artist p {
+  font-weight: 300;
+  font-size: .7em;
+}
+
+.mainPage main .artist footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-top: 1em;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.mainPage main .artist footer .fa-edit, .mainPage main .artist footer .fa-trash-alt {
+  color: #211D2E;
+  background-color: #86809C;
+  padding: .5em;
+  border-radius: 50%;
 }
 
-@-webkit-keyframes App-logo-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.mainPage main .artist footer .fa-trash-alt {
+  margin-left: 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.mainPage main .artist footer .genre {
+  display: block;
+  text-transform: uppercase;
+  background-color: #B9012D;
+  color: #FFF;
+  border-radius: 6px;
+  padding: .5em 2em;
+}
+
+.mainPage main .artist footer .acidjazz {
+  background-color: #DF791B;
+}
+
+.mainPage main .artist footer .heavymetall {
+  background-color: #443841;
+}
+
+.addArtist main h1, .updateArtist main h1 {
+  color: #FFF;
+  text-align: center;
+  border-bottom: 1px solid #564F70;
+  padding: .5em 0;
+  text-transform: uppercase;
+  width: 100%;
+  letter-spacing: .15em;
+}
+
+.addArtist main form, .updateArtist main form {
+  width: 90%;
+  margin: 1em auto;
+}
+
+.addArtist main form label, .updateArtist main form label {
+  display: inline-block;
+  color: #FFF;
+  margin: 1em 0 .5em 0;
+  text-transform: uppercase;
+}
+
+.addArtist main form input, .addArtist main form select, .updateArtist main form input, .updateArtist main form select {
+  background-color: #FFF;
+  color: #86809C;
+  width: 100%;
+  padding: 1em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.addArtist main form :focus, .updateArtist main form :focus {
+  outline: none;
+}
+
+.addArtist main form button, .updateArtist main form button {
+  font-size: 1em;
+  color: #211D2E;
+  background-color: #86809C;
+  font-weight: 700;
+  padding: .5em;
+  border-radius: 5px;
+  margin-top: 1em;
+  text-transform: uppercase;
 }
 /*# sourceMappingURL=style.css.map */
