@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
+import filler from './filler.svg'
 
 
 class Artist extends Component {
 
     handleUpdateClick = () => {
-      this.props.setActiveView('updateArtist')
+      var {setActiveView, setArtistUpdate, id} = this.props
+      setActiveView('updateArtist')
+      setArtistUpdate(id)
   }
 
   handleTrashClick = () => {
     var {deleteArtist,id} = this.props
-    console.log('click')
     deleteArtist(id);
 }
 
   render() {
     var { name, description, photo, type_id } = this.props
+    var newClassName = 'genre ' + type_id.toLowerCase()
+
     return (
       <div className="artist">
-        <img src={photo} alt="The Artist" />
+        <img src={photo ? photo : filler} alt="The Artist" />
         <h1>{name}</h1>
         <hr />
         <p>{description}</p>
@@ -26,7 +30,7 @@ class Artist extends Component {
             <i onClick={this.handleUpdateClick} className="fas fa-edit"></i>
             <i onClick={this.handleTrashClick} className="far fa-trash-alt"></i>
           </div>
-          <button className="genre">{type_id}</button>
+          <button className={newClassName}>{type_id}</button>
         </footer>
       </div>
     )

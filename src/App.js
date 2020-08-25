@@ -28,7 +28,8 @@ class App extends Component {
           photo: "/images/the-strokes-1.jpg",
           type_id: 'Rock'
         }
-      ]
+      ],
+      artistToUpdate: {}
     }
   }
 
@@ -36,22 +37,36 @@ class App extends Component {
     this.setState({ activeView: view })
   }
 
+  setArtistUpdate = (id) => {
+    var foundArtist = this.state.artists.find((artist) => {
+      return artist.id === id
+    })
+    this.setState({ artistToUpdate: foundArtist })
+  }
+
   getArtists = () => {
-    axios.get(urlPrefix + '/artists')
+    axios.get(urlPrefix+'/artists')
       .then(res => {
         this.setState({ artists: res.data })
       })
   }
-
-  deleteArtist = (id) => {
-    axios.delete(urlPrefix + '/artists/' + id)
+  
+  addArtist = (data) => {
+    axios.post(urlPrefix+'/artists/',data)
+    .then(res => {
+      this.getArtists()
+    })
+  }
+  
+  updateArtist = (id, data) => {
+    axios.put(urlPrefix + '/artists/'+id,data)
       .then(res => {
         this.getArtists()
       })
   }
 
-  updateArtist = (id, data) => {
-    axios.delete(urlPrefix + '/artists/ ' + id, data)
+  deleteArtist = (id) => {
+    axios.delete(urlPrefix + '/artists/'+id)
       .then(res => {
         this.getArtists()
       })
@@ -76,11 +91,13 @@ class App extends Component {
             {
               this.state.artists.map((artist) => {
                 var props = {
-                  ...artist,
+                  key: artist.id,
                   setActiveView: this.setActiveView,
                   deleteArtist: this.deleteArtist,
+                  setArtistUpdate: this.setArtistUpdate,
+                  ...artist
                 }
-                return (<Artist {...props} key={artist.id} />)
+                return (<Artist {...props} />)
               })
             }
           </main>
@@ -94,7 +111,17 @@ class App extends Component {
               </div>
               <i onClick={() => this.setActiveView('artists')} className="fas fa-times-circle"></i>
             </header>
-              <Add />
+            {
+              (() => {
+                var props = {
+                  setActiveView: this.setActiveView,
+                  addArtist: this.addArtist
+                }
+                return (
+                  <Add {...props}/>
+                )
+              })()
+            }
           </div>
         </View>
 
@@ -106,7 +133,18 @@ class App extends Component {
               </div>
               <i onClick={() => this.setActiveView('artists')} className="fas fa-times-circle"></i>
             </header>
-            <Update />
+            {
+              (() => {
+                var props = {
+                  ...this.state.artistToUpdate,
+                  setActiveView: this.setActiveView,
+                  updateArtist: this.updateArtist
+                }
+                return (
+                  <Update {...props} />
+                )
+              })()
+            }
           </div>
         </View>
       </div>
