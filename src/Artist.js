@@ -17,7 +17,7 @@ class Artist extends Component {
 
   render() {
     var { name, description, photo, type_id } = this.props
-    var newClassName = 'genre ' + type_id.toLowerCase()
+    var newClassName = 'genre ' + type_id.replace(/\s+/g, '-').toLowerCase()
 
     return (
       <div className="artist">

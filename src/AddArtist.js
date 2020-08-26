@@ -37,7 +37,8 @@ class AddArtistForm extends Component {
             <select name="genre-input" id="genre-input">
               <option value="rock">Rock</option>
               <option value="metal">Metal</option>
-              <option value="acidjazz">Acid Jazz</option>
+              <option value="acid jazz">Acid Jazz</option>
+              <option value="new age">New Age</option>
               <option value="edm">EDM</option>
             </select>
 
